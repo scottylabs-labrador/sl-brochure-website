@@ -1,1 +1,26 @@
-# sl-brochure-website
+# ScottyLabs 2026–27 O-week brochure
+
+Digital, readable version of the ScottyLabs tri-fold for [brochure.scottylabs.org](https://brochure.scottylabs.org).
+
+## Local
+
+```bash
+python3 -m http.server 8080
+```
+
+Open [http://localhost:8080](http://localhost:8080).
+
+## Railway
+
+The site is a static bundle served by nginx on `$PORT`.
+
+```bash
+docker build -t sl-brochure .
+docker run --rm -p 8080:8080 -e PORT=8080 sl-brochure
+```
+
+On Railway, connect this repo and deploy. Point `brochure.scottylabs.org` at the generated domain.
+
+## Copy
+
+Committee copy, dates, and figures are transcribed from the 2026–27 print spreads. The TartanConnect QR encodes [linktr.ee/scottylabs](https://linktr.ee/scottylabs).
