@@ -19,6 +19,35 @@
   const captureMode = new URLSearchParams(location.search).has("capture");
   let assembled = false;
 
+  function layoutCoverScottie() {
+    const cover = document.querySelector(".print-sheet #cover") || document.getElementById("cover");
+    if (!cover || !assembled) return;
+    const frame = cover.querySelector(".scottie-frame");
+    const mark = cover.querySelector(".scottie-mark");
+    if (!frame || !mark) return;
+    frame.style.setProperty("position", "absolute", "important");
+    frame.style.setProperty("display", "block", "important");
+    frame.style.setProperty("top", "0.3in", "important");
+    frame.style.setProperty("left", "-2.65in", "important");
+    frame.style.setProperty("right", "auto", "important");
+    frame.style.setProperty("bottom", "auto", "important");
+    frame.style.setProperty("width", "7.15in", "important");
+    frame.style.setProperty("height", "6.1in", "important");
+    frame.style.setProperty("max-width", "none", "important");
+    frame.style.setProperty("margin", "0", "important");
+    frame.style.setProperty("padding", "0", "important");
+    frame.style.setProperty("overflow", "visible", "important");
+    frame.style.setProperty("transform", "none", "important");
+    mark.style.setProperty("display", "block", "important");
+    mark.style.setProperty("width", "7.15in", "important");
+    mark.style.setProperty("height", "6.1in", "important");
+    mark.style.setProperty("max-width", "none", "important");
+    mark.style.setProperty("max-height", "none", "important");
+    mark.style.setProperty("object-fit", "fill", "important");
+    mark.style.setProperty("object-position", "center top", "important");
+    mark.style.setProperty("transform", "none", "important");
+  }
+
   function assembleBrochure() {
     if (assembled || !printOutside || !printInside) return;
     if (!events || !hello || !cover || !tech || !labrador || !foundry) return;
@@ -27,7 +56,11 @@
     if (printRoot) printRoot.hidden = false;
     assembled = true;
     document.documentElement.classList.add("print-mode");
-    requestAnimationFrame(fitPrintPanels);
+    layoutCoverScottie();
+    requestAnimationFrame(() => {
+      layoutCoverScottie();
+      fitPrintPanels();
+    });
   }
 
   function restoreBrochure() {
@@ -44,19 +77,20 @@
     document.querySelectorAll(".print-sheet > .panel, .print-sheet > .cover").forEach((el) => {
       el.style.zoom = "";
     });
+    if (cover) {
+      const frame = cover.querySelector(".scottie-frame");
+      const mark = cover.querySelector(".scottie-mark");
+      if (frame) frame.removeAttribute("style");
+      if (mark) mark.removeAttribute("style");
+    }
     if (printRoot) printRoot.hidden = true;
     document.documentElement.classList.remove("print-mode");
     assembled = false;
   }
 
   function fitPrintPanels() {
-    if (!assembled) return;
-    document.querySelectorAll(".print-sheet > .panel, .print-sheet > .cover").forEach((el) => {
-      el.style.zoom = "";
-      if (el.scrollHeight > el.clientHeight + 6) {
-        el.style.zoom = String(Math.max(0.78, el.clientHeight / el.scrollHeight));
-      }
-    });
+    // Print density is CSS (Figma-tight). Zooming panels to dodge overflow
+    // was shrinking type and photos and leaving the empty cyan Thomas flagged.
   }
 
   if (printTrigger) {
@@ -68,7 +102,10 @@
     if (captureMode) document.body.classList.add("print-capture");
     if (printToolbar && !captureMode) printToolbar.hidden = false;
     assembleBrochure();
-    window.addEventListener("load", fitPrintPanels);
+    window.addEventListener("load", () => {
+      layoutCoverScottie();
+      fitPrintPanels();
+    });
   } else {
     window.addEventListener("beforeprint", assembleBrochure);
     window.addEventListener("afterprint", restoreBrochure);

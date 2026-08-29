@@ -42,3 +42,4 @@ Committee copy, dates, and figures are transcribed from the 2026–27 print spre
 - **2026-08-29** — Header nav lists all seven committees with per-committee scroll-spy (Thomas).
 - **2026-08-29** — Header order is Outreach → Join → Calendar to match the page (Evan, Slack #leadership-26-27).
 - **2026-08-29** — Print CSS + `/print` preview reassemble the live site into a two-sided letter landscape trifold. Evan’s idea in Slack #leadership-26-27; Thomas Kanz gave the go-ahead and asked for proof pages from the live app. Screen layout unchanged.
+- **2026-08-29** — Print density tightened to match Figma (Thomas: live print had too much unused space).

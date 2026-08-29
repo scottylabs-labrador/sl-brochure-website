@@ -5,7 +5,8 @@
  */
 import { spawn } from "node:child_process";
 import { createServer } from "node:http";
-import { readFile, unlink } from "node:fs/promises";
+import { mkdtemp, access, readFile, rm, unlink } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import { extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -54,15 +55,39 @@ function startStaticServer() {
   });
 }
 
-function run(cmd, args) {
+function run(cmd, args, { timeoutMs = 0 } = {}) {
   return new Promise((resolveRun, reject) => {
     const child = spawn(cmd, args, { stdio: "inherit" });
-    child.on("error", reject);
+    let timedOut = false;
+    const timer =
+      timeoutMs > 0
+        ? setTimeout(() => {
+            timedOut = true;
+            child.kill("SIGKILL");
+          }, timeoutMs)
+        : null;
+    child.on("error", (err) => {
+      if (timer) clearTimeout(timer);
+      reject(err);
+    });
     child.on("exit", (code) => {
-      if (code === 0) resolveRun();
+      if (timer) clearTimeout(timer);
+      if (code === 0 || timedOut) resolveRun();
       else reject(new Error(`${cmd} exited ${code}`));
     });
   });
+}
+
+function chromeArgs(profile, extra) {
+  return [
+    "--headless=new",
+    "--disable-gpu",
+    "--no-sandbox",
+    "--hide-scrollbars",
+    "--remote-debugging-port=0",
+    `--user-data-dir=${profile}`,
+    ...extra,
+  ];
 }
 
 const server = await startStaticServer();
@@ -70,31 +95,36 @@ const { port } = server.address();
 const origin = `http://127.0.0.1:${port}`;
 const pdfPath = join(root, "brochure.pdf");
 const shotPath = join(root, ".print-capture.png");
+const pdfProfile = await mkdtemp(join(tmpdir(), "brochure-pdf-"));
+const shotProfile = await mkdtemp(join(tmpdir(), "brochure-shot-"));
 
 try {
-  await run(chromeBin, [
-    "--headless=new",
-    "--disable-gpu",
-    "--no-sandbox",
-    "--hide-scrollbars",
-    "--no-pdf-header-footer",
-    `--print-to-pdf=${pdfPath}`,
-    "--virtual-time-budget=12000",
-    `${origin}/print`,
-  ]);
+  await run(
+    chromeBin,
+    chromeArgs(pdfProfile, [
+      "--no-pdf-header-footer",
+      `--print-to-pdf=${pdfPath}`,
+      "--virtual-time-budget=8000",
+      `${origin}/print`,
+    ]),
+    { timeoutMs: 20000 },
+  );
 
   // Two 11in×8.5in sheets stacked, 96 CSS px/in, deviceScaleFactor 2.
-  await run(chromeBin, [
-    "--headless=new",
-    "--disable-gpu",
-    "--no-sandbox",
-    "--hide-scrollbars",
-    "--force-device-scale-factor=2",
-    "--window-size=1056,1632",
-    `--screenshot=${shotPath}`,
-    "--virtual-time-budget=12000",
-    `${origin}/print?capture=1`,
-  ]);
+  await run(
+    chromeBin,
+    chromeArgs(shotProfile, [
+      "--force-device-scale-factor=2",
+      "--window-size=1056,1632",
+      `--screenshot=${shotPath}`,
+      "--virtual-time-budget=8000",
+      `${origin}/print?capture=1`,
+    ]),
+    { timeoutMs: 18000 },
+  );
+
+  await access(pdfPath);
+  await access(shotPath);
 
   await run("python3", [
     "-c",
@@ -113,4 +143,6 @@ print("split", im.size, "->", (w, sheet_h))
   console.log("Wrote brochure.pdf, brochure-outside.png, brochure-inside.png");
 } finally {
   server.close();
+  await rm(pdfProfile, { recursive: true, force: true }).catch(() => {});
+  await rm(shotProfile, { recursive: true, force: true }).catch(() => {});
 }
