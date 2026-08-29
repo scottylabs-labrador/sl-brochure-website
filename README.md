@@ -46,3 +46,4 @@ Committee copy, dates, and figures are transcribed from the 2026–27 print spre
 - **2026-08-29** — Print inside stacks Labrador→Design and Foundry→Interested from the top (Thomas: the `margin-top: auto` gap looked sus). Leftover room stays at the column bottom, not between sections.
 - **2026-08-29** — CMU Guide pill links to https://cmu.guide/?utm_source=SL-brochure (Thomas).
 - **2026-08-29** — tartanhacks.com links now go to https://nova.scottylabs.org (Thomas, Slack #leadership-26-27; Nova AI hackathon site is up).
+- **2026-08-29** — REVERTED TartanHacks links back to https://2026.tartanhacks.com (Evan, Slack #leadership-26-27; preregistration and judge forms on 2026 site, not merging with Nova).
