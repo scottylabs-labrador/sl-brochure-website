@@ -28,13 +28,17 @@
       if (item === active) item.link.setAttribute("aria-current", "true");
       else item.link.removeAttribute("aria-current");
     }
+    if (active) {
+      active.link.scrollIntoView({ inline: "nearest", block: "nearest", behavior: "instant" });
+    }
   }
 
   function spyLine() {
     const headerH = header ? header.offsetHeight : 0;
-    // A line just below the sticky header, ~20% into the viewport — the
-    // section whose top has passed this line is "current".
-    return Math.max(headerH + 8, window.innerHeight * 0.2);
+    // Just below the sticky header so nested headings (Finance, Design,
+    // Outreach) win as soon as they dock under the nav — not 20% down the
+    // viewport, where a neighboring column's heading can steal the highlight.
+    return headerH + 16;
   }
 
   function update() {
@@ -54,7 +58,7 @@
     const hashItem = items.find((item) => item.href === location.hash);
     if (hashItem) {
       const hashTop = hashItem.el.getBoundingClientRect().top;
-      if (hashTop <= y && Math.abs(hashTop - bestTop) <= 12) {
+      if (hashTop <= y && bestTop <= hashTop + 48) {
         current = hashItem;
       }
     }

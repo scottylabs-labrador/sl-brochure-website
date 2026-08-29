@@ -106,11 +106,14 @@ a:hover {
 
 .site-nav {
   display: flex;
-  gap: 0.15rem;
+  gap: 0.1rem;
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
   margin-left: auto;
+  min-width: 0;
+  flex: 1 1 auto;
+  justify-content: flex-start;
 }
 
 .site-nav::-webkit-scrollbar {
@@ -119,11 +122,11 @@ a:hover {
 
 .site-nav a {
   flex: 0 0 auto;
-  padding: 0.7rem 0.8rem;
+  padding: 0.65rem 0.7rem;
   color: var(--ink);
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   border-radius: 999px;
 }
 
@@ -181,9 +184,12 @@ a:hover {
 #cover,
 #committees,
 #tech,
+#finance,
 #labrador,
+#design,
 #foundry,
 #events,
+#outreach,
 #hello,
 #calendar,
 #where {
@@ -784,6 +790,11 @@ a:hover {
     display: flex;
     flex-direction: column;
     padding-top: 0;
+  }
+
+  .site-nav a {
+    padding: 0.55rem 0.6rem;
+    font-size: 0.82rem;
   }
 
   .cover-art {
