@@ -27,4 +27,4 @@ Committee copy, dates, and figures are transcribed from the 2026–27 print spre
 
 ## Changelog
 
-- **2026-08-29** — Desktop hero Scottie is the full 3-piece mark (body, hind/tail, U-shaped belly/feet), combined in one SVG at native Figma scale with `object-fit: contain`.
+- **2026-08-29** — Desktop hero Scottie is the full 3-piece mark (body, hind/tail, U-shaped belly/feet), combined in one SVG at native Figma scale with `object-fit: contain`. Frame padding keeps snout, ears, and tail tip inside the cover on desktop.
