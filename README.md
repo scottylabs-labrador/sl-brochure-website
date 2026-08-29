@@ -30,3 +30,4 @@ Committee copy, dates, and figures are transcribed from the 2026–27 print spre
 - **2026-08-29** — Desktop hero Scottie is the full 3-piece mark (body, hind/tail, U-shaped belly/feet), combined in one SVG at native Figma scale with `object-fit: contain`. The mark is centered with large cover gutters so snout, ears, and tail tip stay unclipped.
 - **2026-08-29** — Sticky nav highlights Committees while that section is in view (Evan, Slack #leadership-26-27).
 - **2026-08-29** — Header nav lists all seven committees with per-committee scroll-spy (Thomas).
+- **2026-08-29** — Header order is Outreach → Join → Calendar to match the page (Evan, Slack #leadership-26-27).
