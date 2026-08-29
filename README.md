@@ -21,6 +21,16 @@ docker run --rm -p 8080:8080 -e PORT=8080 sl-brochure
 
 On Railway, connect this repo and deploy. Point `brochure.scottylabs.org` at the generated domain.
 
+## Print (trifold)
+
+The on-screen site stays a scrolling digital brochure. Printing reassembles the same sections into the two Figma sheets (letter landscape, three panels).
+
+1. Open [https://brochure.scottylabs.org/print](https://brochure.scottylabs.org/print) for an on-screen proof of both sheets.
+2. **Print / Save PDF** (or File → Print). Use Chrome or Edge: **Letter**, **landscape**, **margins None**, **background graphics** on. Two-sided: flip on the **short edge**. Page 1 is the outside (cover on the right); page 2 is the inside.
+3. Download [https://brochure.scottylabs.org/brochure.pdf](https://brochure.scottylabs.org/brochure.pdf) for the two pages the app renders. PNGs: `/brochure-outside.png`, `/brochure-inside.png`.
+
+File → Print from the homepage uses the same layout (sticky header hidden). Regenerating the PDF/PNGs: `python3 -m http.server 8080` then `node tools/render-brochure.mjs`.
+
 ## Copy
 
 Committee copy, dates, and figures are transcribed from the 2026–27 print spreads. The TartanConnect QR encodes [linktr.ee/scottylabs](https://linktr.ee/scottylabs).
@@ -31,3 +41,4 @@ Committee copy, dates, and figures are transcribed from the 2026–27 print spre
 - **2026-08-29** — Sticky nav highlights Committees while that section is in view (Evan, Slack #leadership-26-27).
 - **2026-08-29** — Header nav lists all seven committees with per-committee scroll-spy (Thomas).
 - **2026-08-29** — Header order is Outreach → Join → Calendar to match the page (Evan, Slack #leadership-26-27).
+- **2026-08-29** — Print CSS + `/print` preview reassemble the live site into a two-sided letter landscape trifold (Thomas, Slack #leadership-26-27; original idea Evan). Screen layout unchanged.

@@ -933,3 +933,509 @@ a:hover {
     scroll-behavior: auto;
   }
 }
+
+/* —— Print / trifold (screen layout above is unchanged) —— */
+
+.print-toolbar[hidden],
+.print-root[hidden] {
+  display: none !important;
+}
+
+.print-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1.1rem;
+  padding: 0.8rem 1.15rem;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.print-toolbar p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.print-toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.print-toolbar .btn {
+  min-height: 2.4rem;
+  padding: 0.4rem 0.95rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 0;
+  font-family: inherit;
+}
+
+.print-toolbar .btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.print-toolbar .btn-ghost:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.print-toolbar-hint {
+  flex: 1 0 100%;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.8rem !important;
+}
+
+.print-sheet-label {
+  margin: 0 0 0.55rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+@page {
+  size: 11in 8.5in;
+  margin: 0;
+}
+
+html.print-mode {
+  font-size: 16px;
+}
+
+html.print-mode,
+html.print-mode body {
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+html.print-mode body {
+  margin: 0;
+  background: #d4d7db;
+  font-size: 10px;
+  line-height: 1.38;
+  letter-spacing: -0.015em;
+}
+
+html.print-mode .site-header,
+html.print-mode .skip-link,
+html.print-mode .site-footer,
+html.print-mode .cover-cta,
+html.print-mode .inside-spread,
+html.print-mode .outside-spread {
+  display: none !important;
+}
+
+html.print-mode main {
+  margin: 0;
+  padding: 0;
+}
+
+html.print-mode .print-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 1.35rem 1rem 3rem;
+}
+
+html.print-mode .print-sheet-wrap {
+  width: 11in;
+}
+
+html.print-mode .print-sheet {
+  width: 11in;
+  height: 8.5in;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  overflow: hidden;
+  background: var(--white);
+}
+
+body.print-preview .print-sheet {
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+}
+
+html.print-mode .print-sheet > .panel,
+html.print-mode .print-sheet > .cover {
+  width: auto;
+  height: 8.5in;
+  min-height: 8.5in;
+  max-height: 8.5in;
+  overflow: hidden;
+  border: 0;
+  padding: 0.32in 0.26in 0.28in !important;
+}
+
+html.print-mode .print-sheet > * + * {
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.08);
+}
+
+html.print-mode .panel h2,
+html.print-mode .where-title {
+  font-size: 28px;
+  line-height: 1.05;
+}
+
+html.print-mode .panel h2::after {
+  width: 2.35rem;
+  height: 2px;
+  margin-top: 0.1rem;
+}
+
+html.print-mode .panel-head {
+  margin-bottom: 0.35rem;
+}
+
+html.print-mode .panel-head-sub {
+  margin-top: 0.55rem;
+}
+
+html.print-mode .panel h3 {
+  font-size: 11px;
+  margin: 0.4rem 0 0.25rem;
+}
+
+html.print-mode .panel p,
+html.print-mode .panel li {
+  font-size: 10px;
+  margin-bottom: 0.38rem;
+}
+
+html.print-mode .pills {
+  gap: 0.28rem;
+}
+
+html.print-mode .pills a,
+html.print-mode .pills span {
+  min-height: 1.4rem;
+  padding: 0.18rem 0.28rem;
+  font-size: 9px;
+  border-radius: 8px;
+}
+
+html.print-mode .interested {
+  margin: 0.4rem 0 0.3rem;
+}
+
+html.print-mode .panel .interested-label {
+  font-size: 22px;
+  margin-bottom: 0.22rem;
+}
+
+html.print-mode .schedule {
+  margin-bottom: 0.35rem;
+}
+
+html.print-mode .foundry-split {
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+html.print-mode .foundry-split ul,
+html.print-mode .panel-foundry > ul {
+  margin-bottom: 0.3rem;
+}
+
+html.print-mode .logo-figure {
+  margin: 0.35rem 0 0;
+}
+
+html.print-mode .sponsors-img {
+  max-height: 1.62in;
+  width: 100%;
+  object-fit: contain;
+  object-position: top;
+}
+
+html.print-mode .photo-tile {
+  margin: 0.38rem 0 0;
+  border-radius: 0.65rem;
+}
+
+html.print-mode .photo-tile img {
+  min-height: 0;
+  max-height: 1.62in;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+html.print-mode .photo-stack {
+  margin-top: 0.35rem;
+  gap: 0.28rem;
+}
+
+html.print-mode .photo-nova {
+  transform: none;
+}
+
+html.print-mode .photo-nova img,
+html.print-mode .photo-spark img {
+  max-height: 1.02in;
+  aspect-ratio: 4 / 3;
+}
+
+html.print-mode .qr-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.35rem 0 0.5rem;
+}
+
+html.print-mode .qr-link img {
+  width: 0.95in;
+  height: 0.95in;
+  border-width: 3px;
+}
+
+html.print-mode .qr-row p {
+  font-size: 9.5px;
+}
+
+html.print-mode .eyebrow {
+  margin-bottom: 0.35rem;
+  font-size: 9px;
+}
+
+html.print-mode .cal-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 0.32rem 0.4rem;
+  margin-bottom: 0.45rem;
+}
+
+html.print-mode .cal-item {
+  grid-template-columns: 2.05rem 1fr;
+  gap: 0.32rem;
+}
+
+html.print-mode .cal-tile {
+  width: 2.05rem;
+  height: 2.05rem;
+}
+
+html.print-mode .cal-tile span {
+  font-size: 0.42rem;
+  line-height: 0.62rem;
+  letter-spacing: 0.03em;
+}
+
+html.print-mode .cal-tile strong {
+  height: calc(2.05rem - 0.62rem);
+  font-size: 0.7rem;
+}
+
+html.print-mode .cal-item h3 {
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+html.print-mode .cal-item p {
+  font-size: 0.58rem;
+}
+
+html.print-mode .where-title {
+  margin: 0.35rem 0 0.2rem;
+  font-size: 22px;
+}
+
+html.print-mode .where-cloud {
+  max-width: 100%;
+}
+
+html.print-mode .cloud-shape {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 1.58in;
+  margin: 0 auto;
+}
+
+html.print-mode .where-logos {
+  inset: 8% 10% 10%;
+}
+
+html.print-mode #cover {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+html.print-mode .cover-art {
+  position: absolute;
+  inset: 0;
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+}
+
+html.print-mode .scottie-frame {
+  top: 3%;
+  right: -22%;
+  bottom: 28%;
+  left: -10%;
+  width: auto;
+  height: auto;
+  aspect-ratio: auto;
+}
+
+html.print-mode .scottie-mark {
+  opacity: 0.86;
+}
+
+html.print-mode .cover-copy {
+  max-width: none;
+}
+
+html.print-mode .cover h1 {
+  margin: 0 0 0.35rem;
+  font-size: 42px;
+}
+
+html.print-mode .cover p {
+  font-size: 9.5px;
+  line-height: 1.4;
+  margin-bottom: 0.45rem;
+}
+
+html.print-mode .cover-heart {
+  width: 2.4rem;
+  top: 3%;
+  left: 2%;
+  opacity: 0.7;
+}
+
+html.print-mode .cover-paren {
+  height: 2.8rem;
+  width: auto;
+  top: 8%;
+  right: 18%;
+  opacity: 0.65;
+}
+
+html.print-mode .cover-bracket {
+  height: 2.6rem;
+  width: auto;
+  top: 4%;
+  left: 22%;
+  opacity: 0.6;
+}
+
+html.print-mode .cover-plus {
+  width: 2.2rem;
+  top: 2%;
+  right: 2%;
+  opacity: 0.7;
+}
+
+html.print-mode .cover-star {
+  width: 2.6rem;
+  right: 2%;
+  top: 38%;
+  opacity: 0.65;
+}
+
+html.print-mode .panel-tech .panel-doodle {
+  height: 4.6rem;
+  top: -1.6rem;
+}
+
+html.print-mode .labrador-star {
+  width: 3.4rem;
+  bottom: 12%;
+}
+
+html.print-mode .labrador-heart {
+  width: 3.2rem;
+  top: -1.2rem;
+}
+
+html.print-mode .foundry-plus {
+  width: 3.2rem;
+  top: -1.2rem;
+}
+
+html.print-mode .foundry-heart {
+  width: 3.6rem;
+  bottom: -0.8rem;
+}
+
+html.print-mode .events-bracket {
+  height: 4.2rem;
+  top: -1rem;
+}
+
+html.print-mode .events-star {
+  width: 3.4rem;
+}
+
+html.print-mode .hello-star {
+  width: 3.2rem;
+  top: -2.2rem;
+}
+
+body.print-capture .print-toolbar,
+body.print-capture .print-sheet-label {
+  display: none !important;
+}
+
+body.print-capture {
+  background: #fff;
+}
+
+body.print-capture .print-root {
+  padding: 0;
+  gap: 0;
+}
+
+body.print-capture .print-sheet {
+  box-shadow: none;
+}
+
+@media print {
+  html.print-mode,
+  html.print-mode body,
+  body.print-preview {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .print-toolbar,
+  .print-sheet-label {
+    display: none !important;
+  }
+
+  html.print-mode .print-root {
+    display: block;
+    padding: 0;
+    gap: 0;
+  }
+
+  html.print-mode .print-sheet-wrap {
+    width: 11in;
+    height: 8.5in;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    break-after: page;
+    page-break-after: always;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  html.print-mode .print-sheet-wrap:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  html.print-mode .print-sheet {
+    box-shadow: none;
+  }
+}

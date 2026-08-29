@@ -20,6 +20,22 @@
 <body>
   <a class="skip-link" href="#cover">Skip to content</a>
 
+  <div class="print-toolbar" hidden>
+    <p>
+      <strong>Print layout</strong>
+      · letter landscape trifold · outside then inside
+    </p>
+    <div class="print-toolbar-actions">
+      <button type="button" class="btn" data-print-trigger>Print / Save PDF</button>
+      <a class="btn btn-ghost" href="/brochure.pdf" download="scottylabs-brochure.pdf">Download PDF</a>
+      <a class="btn btn-ghost" href="/">Back to site</a>
+    </div>
+    <p class="print-toolbar-hint">
+      Use Chrome or Edge: landscape, Letter, margins None, background graphics on.
+      Two-sided printing: flip on the short edge. Page 1 is the outside (cover on the right); page 2 is the inside.
+    </p>
+  </div>
+
   <header class="site-header">
     <a class="wordmark" href="#cover">ScottyLabs</a>
     <nav class="site-nav" aria-label="Brochure sections">
@@ -37,6 +53,17 @@
   </header>
 
   <main>
+    <div class="print-root" hidden>
+      <div class="print-sheet-wrap">
+        <p class="print-sheet-label">Outside — Events · Say Hello · Cover</p>
+        <div class="print-sheet print-sheet-outside" aria-label="Brochure outside"></div>
+      </div>
+      <div class="print-sheet-wrap">
+        <p class="print-sheet-label">Inside — Tech · Labrador · Foundry</p>
+        <div class="print-sheet print-sheet-inside" aria-label="Brochure inside"></div>
+      </div>
+    </div>
+
     <section class="cover dots" id="cover">
       <div class="cover-art" aria-hidden="true">
         <div class="scottie-frame">
@@ -333,6 +360,7 @@
       <a href="https://scottylabs.org">scottylabs.org</a>
       <a href="https://tartanhacks.com">tartanhacks.com</a>
       <a href="https://linktr.ee/scottylabs">TartanConnect list</a>
+      <a href="/print">Print trifold</a>
     </p>
   </footer>
 
