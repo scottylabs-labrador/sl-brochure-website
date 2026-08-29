@@ -1150,18 +1150,16 @@ html.print-mode .panel-foundry > ul {
 
 html.print-mode .logo-figure {
   margin: 0.28rem 0 0;
-  flex: 1 1 auto;
-  min-height: 1.85in;
-  display: flex;
-  align-items: flex-end;
+  flex: 0 0 auto;
+  min-height: 0;
 }
 
 html.print-mode .sponsors-img {
-  max-height: none;
+  max-height: 1.95in;
   width: 100%;
   height: auto;
   object-fit: contain;
-  object-position: bottom center;
+  object-position: top center;
 }
 
 html.print-mode .photo-tile {
@@ -1301,14 +1299,16 @@ html.print-mode .where-logos {
   inset: 8% 10% 10%;
 }
 
+/* Pack from the top like Figma — leftover stays at the column bottom,
+   not a hole between Labrador/Design or Committee/Interested. */
 html.print-mode .panel-labrador #design {
-  margin-top: auto;
-  padding-top: 0.15in;
+  margin-top: 0.38in;
+  padding-top: 0;
 }
 
 html.print-mode .panel-foundry .interested {
-  margin-top: auto;
-  padding-top: 0.12in;
+  margin-top: 0.32in;
+  padding-top: 0;
 }
 
 html.print-mode .print-sheet > .cover {
@@ -1340,13 +1340,13 @@ html.print-mode .print-sheet #cover .cover-art {
 html.print-mode .print-sheet #cover .scottie-frame {
   position: absolute !important;
   display: block !important;
-  /* Window onto the head (left of panel) through the tail (right), feet near the title. */
-  top: 0.3in !important;
+  /* Window onto the head through the tail; extend down so feet meet the title. */
+  top: 0.18in !important;
   left: -2.65in !important;
   right: auto !important;
   bottom: auto !important;
-  width: 7.15in !important;
-  height: 6.1in !important;
+  width: 7.28in !important;
+  height: 6.33in !important;
   max-width: none !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -1357,8 +1357,8 @@ html.print-mode .print-sheet #cover .scottie-frame {
 
 html.print-mode .print-sheet #cover .scottie-mark {
   display: block !important;
-  width: 7.15in !important;
-  height: 6.1in !important;
+  width: 7.28in !important;
+  height: 6.33in !important;
   max-width: none !important;
   max-height: none !important;
   opacity: 0.88;
@@ -1536,18 +1536,18 @@ body.print-capture .print-sheet {
   }
 
   html.print-mode .print-sheet #cover .scottie-frame {
-    top: 0.3in !important;
+    top: 0.18in !important;
     left: -2.65in !important;
     right: auto !important;
     bottom: auto !important;
-    width: 7.15in !important;
-    height: 6.1in !important;
+    width: 7.28in !important;
+    height: 6.33in !important;
     margin: 0 !important;
   }
 
   html.print-mode .print-sheet #cover .scottie-mark {
-    width: 7.15in !important;
-    height: 6.1in !important;
+    width: 7.28in !important;
+    height: 6.33in !important;
     object-fit: fill !important;
     object-position: center top !important;
   }
