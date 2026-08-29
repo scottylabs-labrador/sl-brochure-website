@@ -24,3 +24,7 @@ On Railway, connect this repo and deploy. Point `brochure.scottylabs.org` at the
 ## Copy
 
 Committee copy, dates, and figures are transcribed from the 2026–27 print spreads. The TartanConnect QR encodes [linktr.ee/scottylabs](https://linktr.ee/scottylabs).
+
+## Changelog
+
+- **2026-08-29** — Desktop hero Scottie is the full 3-piece mark (body, hind/tail, U-shaped belly/feet), combined in one SVG at native Figma scale with `object-fit: contain`.
