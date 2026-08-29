@@ -1160,7 +1160,7 @@ html.print-mode .photo-tile {
 
 html.print-mode .photo-tile img {
   min-height: 0;
-  max-height: 1.62in;
+  max-height: 1.85in;
   aspect-ratio: 16 / 10;
   object-fit: cover;
 }
@@ -1243,6 +1243,10 @@ html.print-mode .where-title {
   font-size: 22px;
 }
 
+html.print-mode h2.where-title::after {
+  display: none;
+}
+
 html.print-mode .where-cloud {
   max-width: 100%;
 }
@@ -1267,29 +1271,41 @@ html.print-mode #cover {
   align-items: stretch;
 }
 
+/* Flow the mark above the copy so the full silhouette is contained, not a cropped overlay. */
 html.print-mode .cover-art {
-  position: absolute;
-  inset: 0;
-  height: auto;
-  margin: 0;
+  position: relative !important;
+  inset: auto !important;
+  flex: 1 1 auto;
+  min-height: 3.9in;
+  height: auto !important;
+  margin: 0 !important;
   overflow: hidden;
 }
 
 html.print-mode .scottie-frame {
-  top: 3%;
-  right: -22%;
-  bottom: 28%;
-  left: -10%;
-  width: auto;
-  height: auto;
-  aspect-ratio: auto;
+  position: absolute !important;
+  top: 0.08in !important;
+  right: 0.05in !important;
+  bottom: 0.05in !important;
+  left: 0.05in !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  aspect-ratio: auto !important;
 }
 
 html.print-mode .scottie-mark {
-  opacity: 0.86;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0.9;
+  object-fit: contain !important;
+  object-position: center 18% !important;
+  transform: scale(1.16);
+  transform-origin: center 30%;
 }
 
 html.print-mode .cover-copy {
+  flex: 0 0 auto;
   max-width: none;
 }
 
@@ -1305,40 +1321,40 @@ html.print-mode .cover p {
 }
 
 html.print-mode .cover-heart {
-  width: 2.4rem;
-  top: 3%;
-  left: 2%;
-  opacity: 0.7;
+  width: 3.4rem;
+  top: 2%;
+  left: -2%;
+  opacity: 0.75;
 }
 
 html.print-mode .cover-paren {
-  height: 2.8rem;
+  height: 4.2rem;
   width: auto;
-  top: 8%;
-  right: 18%;
-  opacity: 0.65;
-}
-
-html.print-mode .cover-bracket {
-  height: 2.6rem;
-  width: auto;
-  top: 4%;
-  left: 22%;
-  opacity: 0.6;
-}
-
-html.print-mode .cover-plus {
-  width: 2.2rem;
-  top: 2%;
-  right: 2%;
+  top: 6%;
+  right: 14%;
   opacity: 0.7;
 }
 
-html.print-mode .cover-star {
-  width: 2.6rem;
-  right: 2%;
-  top: 38%;
+html.print-mode .cover-bracket {
+  height: 3.8rem;
+  width: auto;
+  top: 2%;
+  left: 18%;
   opacity: 0.65;
+}
+
+html.print-mode .cover-plus {
+  width: 3.1rem;
+  top: 1%;
+  right: 0;
+  opacity: 0.75;
+}
+
+html.print-mode .cover-star {
+  width: 3.6rem;
+  right: -4%;
+  top: 36%;
+  opacity: 0.7;
 }
 
 html.print-mode .panel-tech .panel-doodle {
