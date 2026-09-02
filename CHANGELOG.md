@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-09-02
+
+- **Committee application link** now appears at https://go.scottylabs.org/apply across the site: added as a ghost button in the cover CTAs (between "Open the brochure" and "TartanConnect list"), as a prominent call-to-action in the Say Hello section ("Committee applications are open"), and as the first footer link. **Thomas Kanz** requested this in Slack #leadership-26-27 brochure thread so students can easily find and access the application form. Link uses absolute https URL and matches existing button/link styles.
+
 ## 2026-08-29
 
 - Desktop hero Scottie is the complete 3-piece silhouette (head/body, hindquarters/tail, and U-shaped belly/feet bar), exported as one SVG at native scale so pieces stay aligned (`object-fit: contain`).
