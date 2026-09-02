@@ -2,6 +2,7 @@
 
 ## 2026-09-02
 
+- Campus-Facing Projects pill **CMU GPT** renamed to **Bark**. **Krish Saxena** asked in Slack #leadership-26-27 (with Hana Benko) to match the Figma print brochure after CMU asked not to put their name on the product. Other CMU-prefixed pills (Courses, Maps, Eats, Guide) are unchanged; Bark stays unlinked like O-Quest.
 - **Committee application link** now appears at https://go.scottylabs.org/apply across the site: added as a ghost button in the cover CTAs (between "Open the brochure" and "TartanConnect list"), as a prominent call-to-action in the Say Hello section ("Committee applications are open"), and as the first footer link. **Thomas Kanz** requested this in Slack #leadership-26-27 brochure thread so students can easily find and access the application form. Link uses absolute https URL and matches existing button/link styles.
 
 ## 2026-08-29
